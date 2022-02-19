@@ -1,5 +1,5 @@
 import { Order } from '@/types/ordersTypes';
-import orders from './orders.json';
+import orders from './jsonFiles/orders.json';
 
 const timeOut:number = 2000;
 
