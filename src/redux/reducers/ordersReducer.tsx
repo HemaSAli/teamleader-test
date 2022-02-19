@@ -1,7 +1,7 @@
 /* eslint-disable default-param-last */
 import { Action, Reducer } from 'redux';
-import { CounterActionTypes, FETCH_ORDERS } from '../actionTypes/orders';
-import { OrdersState } from '../../types/ordersTypes';
+import { CounterActionTypes, FETCH_ORDERS } from '@/redux/actionTypes/orders';
+import { OrdersState } from '@/types/ordersTypes';
 
 const initialState: OrdersState = {
   orders: [],
