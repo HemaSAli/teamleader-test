@@ -1,12 +1,13 @@
 import React from 'react';
-import { useAppSelector } from './redux/hooks';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/HomePage';
 
 function App() {
-  const stateX = useAppSelector((state) => state.OrdersReducer);
-  console.log(stateX, 'stateX');
   return (
     <div className="teamleader-container">
-      <p>Simple Home Page =)</p>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }
