@@ -8,3 +8,10 @@ export const fetchOrders = () => new Promise<{ orders: Order[] }>((resolve) => {
     resolve({ orders });
   }, timeOut);
 });
+
+export const fetchOrder = (orderID: string) => new Promise<{ selectedOrder: Order | undefined}>((resolve) => {
+  setTimeout(() => {
+    const selectedOrder = orders.find((orderItem) => orderItem.id === orderID);
+    resolve({ selectedOrder });
+  }, timeOut);
+});
