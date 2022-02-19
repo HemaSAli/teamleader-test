@@ -1,7 +1,15 @@
-export const FETCH_ORDERS = 'FETCH_ORDERS';
+import { Order } from '@/types/ordersTypes';
 
-type FetchOrders = {
-  type: typeof FETCH_ORDERS;
+export const FETCH_ORDERS_START = 'FETCH_ORDERS_START';
+export const FETCH_ORDERS_SUCCESS = 'FETCH_ORDERS_SUCCESS';
+
+type FetchOrdersStart = {
+  type: typeof FETCH_ORDERS_START;
 }
 
-export type CounterActionTypes = FetchOrders;
+type FetchOrdersSuccess = {
+  type: typeof FETCH_ORDERS_SUCCESS;
+  payload: Order[]
+}
+
+export type OrdersActionType = FetchOrdersStart | FetchOrdersSuccess;
