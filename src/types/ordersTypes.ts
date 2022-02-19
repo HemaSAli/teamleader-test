@@ -11,9 +11,13 @@ export type Order = {
   total: string;
   items: OrderProduct[];
 };
-
+export type SingleOrder = {
+  order: Order | undefined,
+  loading: boolean,
+  error: boolean,
+}
 export type OrdersState = {
   orders: Order[];
   loading: boolean;
-  signleOrder: Order,
+  singleOrder: SingleOrder;
 };
