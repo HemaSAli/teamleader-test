@@ -48,24 +48,24 @@ function SingleOrder() {
                 <p className="signle-order-info">
                   Total: <span className="red">{item.total}</span>
                 </p>
-                <button
-                  type="button"
-                  className="add-products"
-                  onClick={() => setAddProductsModalVisible(true)}
-                >
-                  Add More Products
-                </button>
+
                 <span className="remove">Remove</span>
               </div>
             ))}
           </div>
+          <button
+            type="button"
+            className="add-products"
+            onClick={() => setAddProductsModalVisible(true)}
+          >
+            Add More Products
+          </button>
           <Link to="/orders">Back</Link>
         </div>
         )}
       </div>
       {order && (
       <Products
-        orderID={order.id}
         onCancel={() => setAddProductsModalVisible(false)}
         visible={addProductsModalVisible}
       />

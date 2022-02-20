@@ -1,0 +1,64 @@
+.teamleader-modal-overlay {
+  border: red;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
+  background: rgba(0, 0, 0, 0.3);
+}
+.teamleader-modal {
+  left: 0;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  width: 500px;
+  margin: 0 auto;
+  overflow: scroll;
+}
+.teamleader-modal-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+}
+.teamleader-modal-content .single-product {
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.teamleader-modal-content .single-product p {
+  margin: 8px 0;
+  font-weight: bold;
+}
+.teamleader-modal-content .single-product button {
+  border: 1px solid #979797;
+  background: #fff;
+  padding: 6px 20px;
+  font-size: 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
