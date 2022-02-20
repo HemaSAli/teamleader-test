@@ -9,9 +9,11 @@ import {
   FETCH_SINGLE_ORDER_FAILED,
   ADD_NEW_PRODUCT_TO_ORDER,
   ADD_CURRENT_PRODUCT_TO_ORDER,
+  REMOVE_ONE_PRODUCT_FROM_ORDER,
+  REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER,
 } from '@/redux/actionTypes/orders';
 import { Order, OrdersState } from '@/types/ordersTypes';
-import handleTotal from '@/functions/handleTotal';
+import { handleAdd, handleSub } from '@/functions/handleTotal';
 
 const initialOrder: Order = {
   id: '',
@@ -65,13 +67,13 @@ export const OrdersReducer: Reducer<OrdersState, Action> = (
           ...state.singleOrder,
           order: {
             ...state.singleOrder.order,
-            total: handleTotal(unitPrice, state.singleOrder.order.total),
+            total: handleAdd(unitPrice, state.singleOrder.order.total),
             items: state.singleOrder.order?.items.map((product) => {
               if (product['product-id'] === productID) {
                 return {
                   ...product,
                   quantity: (Number(product.quantity) + 1).toString(),
-                  total: handleTotal(unitPrice, product.total),
+                  total: handleAdd(unitPrice, product.total),
                 };
               }
               return product;
@@ -88,8 +90,45 @@ export const OrdersReducer: Reducer<OrdersState, Action> = (
           ...state.singleOrder,
           order: {
             ...state.singleOrder.order,
-            total: handleTotal(unitPrice, state.singleOrder.order.total),
+            total: handleAdd(unitPrice, state.singleOrder.order.total),
             items: [...state.singleOrder.order.items, { ...action.payload, total: unitPrice.toString(), quantity: '1' }],
+          },
+        },
+      };
+    }
+    case REMOVE_ONE_PRODUCT_FROM_ORDER: {
+      const { payload: { productID, unitPrice } } = action;
+      return {
+        ...state,
+        singleOrder: {
+          ...state.singleOrder,
+          order: {
+            ...state.singleOrder.order,
+            total: handleSub(unitPrice, state.singleOrder.order.total),
+            items: state.singleOrder.order?.items.map((product) => {
+              if (product['product-id'] === productID) {
+                return {
+                  ...product,
+                  quantity: (Number(product.quantity) - 1).toString(),
+                  total: handleSub(unitPrice, product.total),
+                };
+              }
+              return product;
+            }),
+          },
+        },
+      };
+    }
+    case REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER: {
+      const { payload: { unitPrice, productID, productQuantity } } = action;
+      return {
+        ...state,
+        singleOrder: {
+          ...state.singleOrder,
+          order: {
+            ...state.singleOrder.order,
+            total: handleSub(unitPrice, state.singleOrder.order.total, productQuantity),
+            items: state.singleOrder.order.items.filter((productItem) => productItem['product-id'] !== productID),
           },
         },
       };

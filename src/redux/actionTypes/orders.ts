@@ -11,6 +11,10 @@ export const ADD_CURRENT_PRODUCT_TO_ORDER = 'ADD_CURRENT_PRODUCT_TO_ORDER';
 export const ADD_NEW_PRODUCT_TO_ORDER = 'ADD_NEW_PRODUCT_TO_ORDER';
 export const ADD_PRODUCT_TO_ORDER_FAILED = 'ADD_PRODUCT_TO_ORDER_FAILED';
 
+export const REMOVE_ONE_PRODUCT_FROM_ORDER = 'REMOVE_ONE_PRODUCT_FROM_ORDER';
+export const REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER = 'REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER';
+export const REMOVE_PRODUCT_FROM_ORDER_FAILED = 'REMOVE_PRODUCT_FROM_ORDER_FAILED';
+
 type FetchOrdersStart = {
   type: typeof FETCH_ORDERS_START;
 };
@@ -36,15 +40,37 @@ type FetchSingleOrderFailed = {
 
 type AddCurrentProductToOrder = {
   type: typeof ADD_CURRENT_PRODUCT_TO_ORDER;
-  payload: Product,
+  payload: Product;
 };
 type AddNewProductToOrder = {
   type: typeof ADD_NEW_PRODUCT_TO_ORDER;
-  payload: Product,
+  payload: Product;
 };
 
 type AddProductToOrderFailed = {
   type: typeof ADD_PRODUCT_TO_ORDER_FAILED;
+  payload: string;
+};
+
+type RemoveOneProductFromOrder = {
+  type: typeof REMOVE_ONE_PRODUCT_FROM_ORDER;
+  payload: {
+    unitPrice: string,
+    productID: string,
+  };
+};
+
+type RemoveAllProductsQuantityFromOrder = {
+  type: typeof REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER;
+  payload: {
+    unitPrice: string,
+    productID: string,
+    productQuantity: string,
+  };
+};
+
+type RemoveProductFromOrderFailed = {
+  type: typeof REMOVE_PRODUCT_FROM_ORDER_FAILED;
   payload: string;
 };
 
@@ -56,4 +82,7 @@ export type OrdersActionType =
   | FetchSingleOrderFailed
   | AddCurrentProductToOrder
   | AddNewProductToOrder
-  | AddProductToOrderFailed;
+  | AddProductToOrderFailed
+  | RemoveOneProductFromOrder
+  | RemoveProductFromOrderFailed
+  | RemoveAllProductsQuantityFromOrder;

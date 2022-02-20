@@ -43,3 +43,17 @@ export const addProductToOrder = (productID: string) =>
       }, 100);
     },
   );
+
+export const removeProductFromOrder = (productID: string) =>
+  new Promise<string>(
+    (resolve, reject) => {
+      setTimeout(() => {
+        const withoutError = true;
+        if (withoutError) {
+          resolve(productID);
+        } else {
+          reject(new Error('Failed to Remove !'));
+        }
+      }, 100);
+    },
+  );

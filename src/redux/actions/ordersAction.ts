@@ -10,6 +10,9 @@ import {
   ADD_CURRENT_PRODUCT_TO_ORDER,
   ADD_NEW_PRODUCT_TO_ORDER,
   ADD_PRODUCT_TO_ORDER_FAILED,
+  REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER,
+  REMOVE_ONE_PRODUCT_FROM_ORDER,
+  REMOVE_PRODUCT_FROM_ORDER_FAILED,
 } from '../actionTypes/orders';
 import type { RootState } from '../store';
 
@@ -29,7 +32,7 @@ export const fetchOrder = (orderID: string) => (dispatch: Dispatch<OrdersActionT
   });
 };
 
-export const addProductToOrder = (productID:string) => (dispatch: Dispatch<OrdersActionType>, currentState: () => RootState) => {
+export const addProductToOrder = (productID: string) => (dispatch: Dispatch<OrdersActionType>, currentState: () => RootState) => {
   ordersAPIs.addProductToOrder(productID).then((product) => {
     const { OrdersReducer: { singleOrder: { order: { items } } } } = currentState();
     const isProductExist = items.find((productItem) => productItem['product-id'] === productID);
@@ -40,5 +43,23 @@ export const addProductToOrder = (productID:string) => (dispatch: Dispatch<Order
     }
   }).catch((error) => {
     dispatch({ type: ADD_PRODUCT_TO_ORDER_FAILED, payload: error.message });
+  });
+};
+
+export const removeProductFromItem = (productID: string, unitPrice: string, removeAll: boolean) => (dispatch: Dispatch<OrdersActionType>, currentState: () => RootState) => {
+  ordersAPIs.removeProductFromOrder(productID).then(() => {
+    const { OrdersReducer: { singleOrder: { order: { items } } } } = currentState();
+    const productInOrder = items.find((productItem) => productItem['product-id'] === productID);
+    const isOneInQuantity = productInOrder?.quantity === '1';
+    if (!productInOrder) {
+      dispatch({ type: REMOVE_PRODUCT_FROM_ORDER_FAILED, payload: 'Product doesnt exist' });
+    } else if (removeAll || isOneInQuantity) {
+      const productQuantity = productInOrder?.quantity;
+      dispatch({ type: REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER, payload: { productQuantity, productID, unitPrice } });
+    } else {
+      dispatch({ type: REMOVE_ONE_PRODUCT_FROM_ORDER, payload: { productID, unitPrice } });
+    }
+  }).catch((error) => {
+    dispatch({ type: REMOVE_PRODUCT_FROM_ORDER_FAILED, payload: error.message });
   });
 };
