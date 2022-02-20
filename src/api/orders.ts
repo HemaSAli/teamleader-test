@@ -1,8 +1,10 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { Order } from '@/types/ordersTypes';
+import { Product } from '@/types/productsTypes';
 import orders from './jsonFiles/orders.json';
+import products from './jsonFiles/products.json';
 
-const timeOut: number = 2000;
+const timeOut: number = 1000;
 
 export const fetchOrders = () =>
   new Promise<{ orders: Order[] }>((resolve) => {
@@ -24,3 +26,19 @@ export const fetchOrder = (orderID: string) =>
       }
     }, timeOut);
   });
+
+export const addProductToOrder = (productID: string) =>
+  new Promise<Product>(
+    (resolve, reject) => {
+      setTimeout(() => {
+        const product = products.find(
+          (productItem) => productItem['product-id'] === productID,
+        );
+        if (product) {
+          resolve(product);
+        } else {
+          reject(new Error('Product Not Found !'));
+        }
+      }, 100);
+    },
+  );
