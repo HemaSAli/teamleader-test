@@ -25,27 +25,30 @@
   color: red;
   font-weight: bold;
 }
-.remove {
-  color: red;
-  margin-top: 12px;
-  font-size: 12px;
-  display: block;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 0 auto;
-  text-align: center;
-  margin-top: 10px;
-  text-decoration: underline;
-}
-button.add-products {
+.signle-order-container button {
   border: 1px solid #979797;
   background: #fff;
-  padding: 6px 20px;
   font-size: 12px;
-  width: 100%;
-  border-radius: 4px;
   font-weight: bold;
+  transition-duration: 0.2s;
+}
+.signle-order-container button:hover {
+  background: rgba(90, 90, 90, 0.247);
+}
+.remove {
+  margin-top: 12px;
+  display: block;
+  cursor: pointer;
   margin: 0 auto;
+  border-radius: 4px;
+  padding: 4px 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+button.add-products {
+  padding: 6px 20px;
+  border-radius: 4px;
   margin-top: 10px;
   cursor: pointer;
   width: 200px;

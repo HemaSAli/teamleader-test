@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { fetchOrder } from '@/redux/actions/ordersAction';
+import { fetchOrder, removeProductFromItem } from '@/redux/actions/ordersAction';
 import Products from '@/components/Products';
 import './style.css';
 
@@ -49,7 +49,18 @@ function SingleOrder() {
                   Total: <span className="red">{item.total}</span>
                 </p>
 
-                <span className="remove">Remove</span>
+                <button
+                  type="button"
+                  className="remove"
+                  onClick={() => { dispatch(removeProductFromItem(item['product-id'], item['unit-price'], false)); }}
+                >Remove One
+                </button>
+                <button
+                  type="button"
+                  className="remove"
+                  onClick={() => { dispatch(removeProductFromItem(item['product-id'], item['unit-price'], true)); }}
+                >Remove All
+                </button>
               </div>
             ))}
           </div>
