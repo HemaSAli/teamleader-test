@@ -4,6 +4,7 @@ import { Product } from '@/types/productsTypes';
 import orders from './jsonFiles/orders.json';
 import products from './jsonFiles/products.json';
 
+// Fake timeout
 const timeOut: number = 1000;
 
 export const fetchOrders = () =>

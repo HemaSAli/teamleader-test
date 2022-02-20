@@ -13,7 +13,6 @@ function OrderItem({ order }: OrderListType) {
       <p className="order-list-item-info">
         <span>
           ORDER ID:
-          {' '}
         </span>
         <span className="order-list-item-info-details">
           {order.id}
