@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { fetchOrder } from '@/redux/actions/ordersAction';
+import Products from '@/components/Products';
 import './style.css';
 
 function SingleOrder() {
   const dispatch = useAppDispatch();
+  const [addProductsModalVisible, setAddProductsModalVisible] = useState<boolean>(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,19 +18,24 @@ function SingleOrder() {
   }, []);
 
   const {
-    OrdersReducer: { singleOrder: { order, loading } },
+    OrdersReducer: { singleOrder: { order, loading, error } },
   } = useAppSelector((state) => state);
 
+  const isFetchOrderSuccess = !loading && order.id;
+  const isFetchOrderFailed = !loading && error;
+
   return (
-    <div className="teamleader-container">
-      {loading && <h3>Loading ...</h3>}
-      {order && (
+    <>
+      <div className="teamleader-container">
+        {loading && <h3>Loading ...</h3>}
+        {isFetchOrderFailed && <h3>{error}</h3>}
+        {isFetchOrderSuccess && (
         <div className="signle-order-container">
           <h2>Details of Order: <span className="red">{order?.id}</span></h2>
           <h2>with total: <span className="red">{order?.total}</span></h2>
           <div className="single-order-items">
             {order?.items.map((item) => (
-              <div className="signle-order-item">
+              <div key={item['product-id']} className="signle-order-item">
                 <p className="signle-order-info">
                   Product ID: <span className="red">{item['product-id']}</span>
                 </p>
@@ -41,14 +48,29 @@ function SingleOrder() {
                 <p className="signle-order-info">
                   Total: <span className="red">{item.total}</span>
                 </p>
+                <button
+                  type="button"
+                  className="add-products"
+                  onClick={() => setAddProductsModalVisible(true)}
+                >
+                  Add More Products
+                </button>
                 <span className="remove">Remove</span>
               </div>
             ))}
           </div>
           <Link to="/orders">Back</Link>
         </div>
+        )}
+      </div>
+      {order && (
+      <Products
+        orderID={order.id}
+        onCancel={() => setAddProductsModalVisible(false)}
+        visible={addProductsModalVisible}
+      />
       )}
-    </div>
+    </>
   );
 }
 

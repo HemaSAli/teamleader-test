@@ -19,10 +19,8 @@ export const fetchOrders = () => (dispatch: Dispatch<OrdersActionType>) => {
 export const fetchOrder = (orderID: string) => (dispatch: Dispatch<OrdersActionType>) => {
   dispatch({ type: FETCH_SINGLE_ORDER_START });
   ordersAPIs.fetchOrder(orderID).then((result) => {
-    if (result.selectedOrder) {
-      dispatch({ type: FETCH_SINGLE_ORDER_SUCCESS, payload: result.selectedOrder });
-    } else {
-      dispatch({ type: FETCH_SINGLE_ORDER_FAILED, payload: undefined });
-    }
+    dispatch({ type: FETCH_SINGLE_ORDER_SUCCESS, payload: result });
+  }).catch((error) => {
+    dispatch({ type: FETCH_SINGLE_ORDER_FAILED, payload: error.message });
   });
 };

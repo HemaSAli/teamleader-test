@@ -8,15 +8,22 @@ import {
   FETCH_SINGLE_ORDER_SUCCESS,
   FETCH_SINGLE_ORDER_FAILED,
 } from '@/redux/actionTypes/orders';
-import { OrdersState } from '@/types/ordersTypes';
+import { Order, OrdersState } from '@/types/ordersTypes';
+
+const initialOrder: Order = {
+  id: '',
+  'customer-id': '',
+  total: '',
+  items: [],
+};
 
 const initialState: OrdersState = {
   orders: [],
   loading: true,
   singleOrder: {
-    order: undefined,
+    order: initialOrder,
     loading: true,
-    error: false,
+    error: '',
   },
 };
 
@@ -26,44 +33,25 @@ export const OrdersReducer: Reducer<OrdersState, Action> = (
 ) => {
   switch (action.type) {
     case FETCH_ORDERS_START:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
     case FETCH_ORDERS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        orders: action.payload,
-      };
+      return { ...state, loading: false, orders: action.payload };
     case FETCH_SINGLE_ORDER_START: {
       return {
         ...state,
-        singleOrder: {
-          order: undefined,
-          loading: true,
-          error: false,
-        },
+        singleOrder: { order: initialOrder, loading: true, error: '' },
       };
     }
     case FETCH_SINGLE_ORDER_SUCCESS: {
       return {
         ...state,
-        singleOrder: {
-          order: action.payload,
-          loading: false,
-          error: false,
-        },
+        singleOrder: { order: action.payload, loading: false, error: '' },
       };
     }
     case FETCH_SINGLE_ORDER_FAILED: {
       return {
         ...state,
-        singleOrder: {
-          order: undefined,
-          loading: false,
-          error: true,
-        },
+        singleOrder: { order: initialOrder, loading: false, error: action.payload },
       };
     }
     default:

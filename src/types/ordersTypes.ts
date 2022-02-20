@@ -11,11 +11,13 @@ export type Order = {
   total: string;
   items: OrderProduct[];
 };
+
 export type SingleOrder = {
-  order: Order | undefined,
+  order: Order,
   loading: boolean,
-  error: boolean,
-}
+  error: string,
+};
+
 export type OrdersState = {
   orders: Order[];
   loading: boolean;
