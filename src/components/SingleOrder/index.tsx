@@ -64,7 +64,9 @@ function SingleOrder() {
         </div>
         )}
       </div>
-      {order && (
+      {/* What I did here is conditional rednder for popup,
+       So I render the popup only if user want to add product */}
+      {addProductsModalVisible && (
       <Products
         onCancel={() => setAddProductsModalVisible(false)}
         visible={addProductsModalVisible}
