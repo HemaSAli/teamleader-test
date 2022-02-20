@@ -65,6 +65,7 @@ export const OrdersReducer: Reducer<OrdersState, Action> = (
           ...state.singleOrder,
           order: {
             ...state.singleOrder.order,
+            total: handleTotal(unitPrice, state.singleOrder.order.total),
             items: state.singleOrder.order?.items.map((product) => {
               if (product['product-id'] === productID) {
                 return {
@@ -87,6 +88,7 @@ export const OrdersReducer: Reducer<OrdersState, Action> = (
           ...state.singleOrder,
           order: {
             ...state.singleOrder.order,
+            total: handleTotal(unitPrice, state.singleOrder.order.total),
             items: [...state.singleOrder.order.items, { ...action.payload, total: unitPrice.toString(), quantity: '1' }],
           },
         },
