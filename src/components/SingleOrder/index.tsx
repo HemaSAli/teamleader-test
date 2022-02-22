@@ -31,8 +31,9 @@ function SingleOrder() {
         {isFetchOrderFailed && <h3>{error}</h3>}
         {isFetchOrderSuccess && (
         <div className="signle-order-container">
-          <h2>Details of Order: <span className="red">{order?.id}</span></h2>
-          <h2>with total: <span className="red">{order?.total}</span></h2>
+          <h2>Details of Order: <span className="red">{order.id}</span></h2>
+          <h2>with total: <span className="red">{order.total}</span></h2>
+          <h2>For Customer ID: <span className="red">{order['customer-id']}</span></h2>
           <div className="single-order-items">
             {order?.items.map((item) => (
               <div key={item['product-id']} className="signle-order-item">
