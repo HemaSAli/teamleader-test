@@ -30,7 +30,7 @@ function OrdersList() {
         <h3 className="orders-list-title">Orders List</h3>
         <div className="orders-list-items">
           {orders.map((order: Order) => (
-            <OrderItem order={order} />
+            <OrderItem key={order.id} order={order} />
           ))}
         </div>
       </div>
