@@ -8,13 +8,13 @@ import {
 } from '@/redux/actionTypes/products';
 import { ProductsState } from '@/types/productsTypes';
 
-const initialState: ProductsState = {
+export const initialState: ProductsState = {
   products: [],
   loading: true,
   error: null,
 };
 
-export const productsReducer: Reducer<ProductsState, Action> = (
+export const productsReducer: Reducer<ProductsState, Action | ProductsActionTypes> = (
   state = initialState,
   action: ProductsActionTypes,
 ) => {

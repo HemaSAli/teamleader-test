@@ -22,7 +22,7 @@ const initialOrder: Order = {
   items: [],
 };
 
-const initialState: OrdersState = {
+export const initialState: OrdersState = {
   orders: [],
   loading: true,
   singleOrder: {
@@ -32,7 +32,7 @@ const initialState: OrdersState = {
   },
 };
 
-export const OrdersReducer: Reducer<OrdersState, Action> = (
+export const OrdersReducer: Reducer<OrdersState, Action | OrdersActionType> = (
   state = initialState,
   action: OrdersActionType,
 ) => {
