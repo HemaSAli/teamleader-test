@@ -33,7 +33,7 @@ export const addProductToOrder = (productID: string) =>
     (resolve, reject) => {
       setTimeout(() => {
         const product = products.find(
-          (productItem) => productItem['product-id'] === productID,
+          (productItem) => productItem.id === productID,
         );
         if (product) {
           resolve(product);

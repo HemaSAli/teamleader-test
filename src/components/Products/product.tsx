@@ -13,7 +13,7 @@ function SingleProduct({ product }: SingleProductProps) {
   const dispatch = useAppDispatch();
 
   const {
-    'product-id': productID, 'unit-price': unitPrice, category, description,
+    id: productID, price: unitPrice, category, description,
   } = product;
   return (
     <div className="single-product">
@@ -22,7 +22,7 @@ function SingleProduct({ product }: SingleProductProps) {
       <p>description: <span className="product-details">{description}</span></p>
       <p>Price: <span className="product-details">{unitPrice}</span></p>
       <button
-        onClick={() => { dispatch(addProductToOrder(product['product-id'])); }}
+        onClick={() => { dispatch(addProductToOrder(productID)); }}
       >
         Add Product
       </button>

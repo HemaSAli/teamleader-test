@@ -76,8 +76,8 @@ describe('Orders Reducer Cases', () => {
       OrdersReducer(initialStateForAddRemove, {
         type: 'ADD_CURRENT_PRODUCT_TO_ORDER',
         payload: {
-          'product-id': 'B102',
-          'unit-price': '4.99',
+          id: 'B102',
+          price: '4.99',
           description: 'Press button',
           category: '2',
         },
@@ -110,8 +110,8 @@ describe('Orders Reducer Cases', () => {
       OrdersReducer(initialStateForAddRemove, {
         type: 'ADD_NEW_PRODUCT_TO_ORDER',
         payload: {
-          'product-id': 'B101',
-          'unit-price': '5.99',
+          id: 'B101',
+          price: '5.99',
           description: 'Basic on-off switch',
           category: '2',
         },

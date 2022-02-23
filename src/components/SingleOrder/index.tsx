@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { fetchOrder, removeProductFromItem, placeOrder } from '@/redux/actions/ordersAction';
 import Products from '@/components/Products';
 import './style.css';
+import { OrderProduct } from '@/types/ordersTypes';
 
 function SingleOrder() {
   const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ function SingleOrder() {
           <h2>with total: <span className="red">{order.total}</span></h2>
           <h2>For Customer ID: <span className="red">{order['customer-id']}</span></h2>
           <div className="single-order-items">
-            {order?.items.map((item) => (
+            {order?.items.map((item: OrderProduct) => (
               <div key={item['product-id']} className="signle-order-item">
                 <p className="signle-order-info">
                   Product ID: <span className="red">{item['product-id']}</span>
