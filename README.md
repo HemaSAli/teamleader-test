@@ -14,10 +14,10 @@ This repo is for Teamleader test solution - Ordering, you can see it here on [Ne
 
 # Features
 - User can see all orders.
-- User can view details of order, with it's details
+- User can view details of order.
 - User can ADD product to order.
 - User can REMOVE product from order.
-- USer can submit order, the result depends on customer revenue.
+- User can submit order, the result depends on customer revenue.
 - Tested using [Jest](https://github.com/facebook/jest) and [React Testing Library
 ](https://github.com/testing-library/react-testing-library)
 
