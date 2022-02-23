@@ -33,9 +33,8 @@
     "build": "craco build",
     "test": "craco test --verbose --silent --watchAll=false",
     "eject": "craco eject",
-    "lint": "eslint --ext=ts --ext=tsx .",
-    "postinstall": "npm i"
-  },
+    "lint": "eslint --ext=ts --ext=tsx ."
+   },
   "jest": {
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
