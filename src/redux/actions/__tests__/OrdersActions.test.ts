@@ -4,11 +4,13 @@ import { RootState } from '@/redux/reducers';
 // NOTE: I Import Here the dummy data just to use it in mock reducer
 import mockOrders from '@/api/jsonFiles/orders.json';
 import { OrdersActionType } from '@/redux/actionTypes/orders';
+import { Order } from '@/types/ordersTypes';
 import {
   fetchOrders,
   fetchOrder,
   addProductToOrder,
   removeProductFromItem,
+  placeOrder,
 } from '../ordersAction';
 
 type Dispatch = ThunkDispatch<RootState, undefined, OrdersActionType>;
@@ -285,6 +287,72 @@ describe('Orders Action Cases', () => {
     expect(actions[0]).toEqual({
       type: 'REMOVE_PRODUCT_FROM_ORDER_FAILED',
       payload: 'Product doesnt exist',
+    });
+  });
+
+  it('Should handle PLACE_ORDER_SUCCESS', async () => {
+    const orderToPlace: Order = {
+      id: '2',
+      'customer-id': '2',
+      items: [
+        {
+          'product-id': 'B102',
+          quantity: '5',
+          'unit-price': '4.99',
+          total: '24.95',
+        },
+      ],
+      total: '24.95',
+    };
+    const state: Partial<RootState> = {
+      OrdersReducer: {
+        orders: [...mockOrders], // I used here the orders of dummy date =)
+        loading: false,
+        singleOrder: {
+          order: orderToPlace,
+          loading: false,
+          error: '',
+        },
+      },
+    };
+    const store = mockStore(state);
+    await store.dispatch(placeOrder(orderToPlace)); // Product isn't exist in order
+    const actions: OrdersActionType[] = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'PLACE_ORDER_SUCCESS',
+    });
+  });
+
+  it('Should handle PLACE_ORDER_FAILED', async () => {
+    const orderToPlace: Order = {
+      id: '2',
+      'customer-id': '3',
+      items: [
+        {
+          'product-id': 'B102',
+          quantity: '5',
+          'unit-price': '4.99',
+          total: '24.95',
+        },
+      ],
+      total: '24.95',
+    };
+    const state: Partial<RootState> = {
+      OrdersReducer: {
+        orders: [...mockOrders], // I used here the orders of dummy date =)
+        loading: false,
+        singleOrder: {
+          order: orderToPlace,
+          loading: false,
+          error: '',
+        },
+      },
+    };
+    const store = mockStore(state);
+    await store.dispatch(placeOrder(orderToPlace)); // Product isn't exist in order
+    const actions: OrdersActionType[] = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'PLACE_ORDER_FAILED',
     });
   });
 });
