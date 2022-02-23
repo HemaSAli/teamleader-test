@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { fetchOrder, removeProductFromItem, placeOrder } from '@/redux/actions/ordersAction';
+import {
+  fetchOrder, removeProductFromItem, placeOrder, resetSingleOrderState,
+} from '@/redux/actions/ordersAction';
 import Products from '@/components/Products';
 import './style.css';
 import { OrderProduct } from '@/types/ordersTypes';
@@ -16,6 +18,9 @@ function SingleOrder() {
     if (id) {
       dispatch(fetchOrder(id));
     }
+    return () => {
+      dispatch(resetSingleOrderState());
+    };
   }, []);
 
   const {

@@ -22,11 +22,53 @@ const initialStateForAddRemove: OrdersState = {
       ],
       total: '49.90',
     },
-    loading: true,
+    loading: false,
     error: '',
   },
 };
+
 describe('Orders Reducer Cases', () => {
+  it('Should handle RESET_SINGLE_ORDER', () => {
+    const mockState = {
+      orders: [],
+      loading: true,
+      singleOrder: {
+        order: {
+          id: '1',
+          'customer-id': '1',
+          items: [
+            {
+              'product-id': 'B102',
+              quantity: '11',
+              'unit-price': '4.99',
+              total: '54.89',
+            },
+          ],
+          total: '54.89',
+        },
+        loading: false,
+        error: '',
+      },
+    };
+    expect(
+      OrdersReducer(mockState, {
+        type: 'RESET_SINGLE_ORDER',
+      }),
+    ).toEqual({
+      orders: [],
+      loading: true,
+      singleOrder: {
+        order: {
+          id: '',
+          'customer-id': '',
+          items: [],
+          total: '',
+        },
+        loading: true,
+        error: '',
+      },
+    });
+  });
   it('Should return with loading true', () => {
     expect(
       OrdersReducer(initialReducerState, {
@@ -99,7 +141,7 @@ describe('Orders Reducer Cases', () => {
           ],
           total: '54.89',
         },
-        loading: true,
+        loading: false,
         error: '',
       },
     });
@@ -139,7 +181,7 @@ describe('Orders Reducer Cases', () => {
           ],
           total: '55.89',
         },
-        loading: true,
+        loading: false,
         error: '',
       },
     });
@@ -165,7 +207,7 @@ describe('Orders Reducer Cases', () => {
           items: [],
           total: '0.00',
         },
-        loading: true,
+        loading: false,
         error: '',
       },
     });
@@ -197,7 +239,7 @@ describe('Orders Reducer Cases', () => {
           ],
           total: '44.91',
         },
-        loading: true,
+        loading: false,
         error: '',
       },
     });

@@ -18,6 +18,12 @@ export const REMOVE_PRODUCT_FROM_ORDER_FAILED = 'REMOVE_PRODUCT_FROM_ORDER_FAILE
 export const PLACE_ORDER_SUCCESS = 'PLACE_ORDER_SUCCESS';
 export const PLACE_ORDER_FAILED = 'PLACE_ORDER_FAILED';
 
+export const RESET_SINGLE_ORDER = 'RESET_SINGLE_ORDER';
+
+type ResetSingleOrder = {
+  type: typeof RESET_SINGLE_ORDER;
+};
+
 type FetchOrdersStart = {
   type: typeof FETCH_ORDERS_START;
 };
@@ -98,4 +104,5 @@ export type OrdersActionType =
   | RemoveProductFromOrderFailed
   | RemoveAllProductsQuantityFromOrder
   | PlaceOrderSucess
-  | PlaceOrderFailed;
+  | PlaceOrderFailed
+  | ResetSingleOrder;

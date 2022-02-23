@@ -11,6 +11,7 @@ import {
   ADD_CURRENT_PRODUCT_TO_ORDER,
   REMOVE_ONE_PRODUCT_FROM_ORDER,
   REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER,
+  RESET_SINGLE_ORDER,
 } from '@/redux/actionTypes/orders';
 import { Order, OrdersState } from '@/types/ordersTypes';
 import { handleAdd, handleSub } from '@/utils/handleTotal';
@@ -39,6 +40,13 @@ export const OrdersReducer: Reducer<OrdersState, Action | OrdersActionType> = (
   switch (action.type) {
     case FETCH_ORDERS_START:
       return { ...state, loading: true };
+    case RESET_SINGLE_ORDER:
+      return {
+        ...state,
+        singleOrder: {
+          loading: true, error: '', order: { ...initialOrder },
+        },
+      };
     case FETCH_ORDERS_SUCCESS:
       return { ...state, loading: false, orders: action.payload };
     case FETCH_SINGLE_ORDER_START: {
