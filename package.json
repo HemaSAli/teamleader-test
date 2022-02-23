@@ -1,7 +1,8 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": ".",
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@testing-library/jest-dom": "^5.16.2",
@@ -29,9 +30,9 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --verbose --silent --watchAll=false",
-    "eject": "react-scripts eject",
+    "build": "craco build",
+    "test": "craco test --verbose --silent --watchAll=false",
+    "eject": "craco eject",
     "lint": "eslint --ext=ts --ext=tsx ."
   },
   "jest": {
