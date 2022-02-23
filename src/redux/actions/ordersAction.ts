@@ -18,8 +18,13 @@ import {
   REMOVE_PRODUCT_FROM_ORDER_FAILED,
   PLACE_ORDER_SUCCESS,
   PLACE_ORDER_FAILED,
+  RESET_SINGLE_ORDER,
 } from '../actionTypes/orders';
 import type { RootState } from '../store';
+
+export const resetSingleOrderState = () => (dispatch: Dispatch<OrdersActionType>) => {
+  dispatch({ type: RESET_SINGLE_ORDER });
+};
 
 export const fetchOrders = () => (dispatch: Dispatch<OrdersActionType>) => {
   dispatch({ type: FETCH_ORDERS_START });
