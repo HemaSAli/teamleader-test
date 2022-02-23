@@ -79,23 +79,15 @@ export const placeOrder = (
   ) => customersAPIs.getCustomer(order['customer-id']).then((customer) => { // Fetch Customer
       const { revenue } = customer;
       if (!order.items.length) { // Order is empty
-        dispatch({
-          type: PLACE_ORDER_SUCCESS,
-        });
+        dispatch({ type: PLACE_ORDER_SUCCESS });
         console.log('Failed !, there are no items in the order');
       } else if (Number(order.total) > Number(revenue)) {
-       dispatch({
-         type: PLACE_ORDER_FAILED,
-       });
+       dispatch({ type: PLACE_ORDER_FAILED });
        console.log('Failed !, the customre revenue less than the total price of order');
      } else {
-       dispatch({
-         type: PLACE_ORDER_SUCCESS,
-       });
+       dispatch({ type: PLACE_ORDER_SUCCESS });
        console.log(`Success for Order ${order.id} for customer ${order['customer-id']} with total ${order.total}`);
      }
     }).catch(() => { // Failed fetch customer
-      dispatch({
-        type: PLACE_ORDER_FAILED,
-      });
+      dispatch({ type: PLACE_ORDER_FAILED });
     });
