@@ -38,7 +38,7 @@ function Products({ visible, onCancel } : ProductsPopup) {
         {loading && <p className="loading"> Loading ...</p>}
         {isError && <p className="loading">{error}</p>}
         {isSuccess && products.map((product) => (
-          <Product key={product['product-id']} product={product} />))}
+          <Product key={product.id} product={product} />))}
       </div>
     </Modal>
   );
