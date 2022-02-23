@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { fetchOrder, removeProductFromItem } from '@/redux/actions/ordersAction';
+import { fetchOrder, removeProductFromItem, placeOrder } from '@/redux/actions/ordersAction';
 import Products from '@/components/Products';
 import './style.css';
 
@@ -71,6 +71,13 @@ function SingleOrder() {
             onClick={() => setAddProductsModalVisible(true)}
           >
             Add More Products
+          </button>
+          <button
+            type="button"
+            className="add-products"
+            onClick={() => { dispatch(placeOrder(order)); }}
+          >
+            Place Order
           </button>
           <Link to="/orders">Back</Link>
         </div>

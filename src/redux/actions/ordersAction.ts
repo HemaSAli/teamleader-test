@@ -1,6 +1,7 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable indent */
-import { ordersAPIs } from '@/api';
+import { ordersAPIs, customersAPIs } from '@/api';
+import { Order } from '@/types/ordersTypes';
 import { Dispatch } from 'redux';
 import {
   OrdersActionType,
@@ -15,6 +16,8 @@ import {
   REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER,
   REMOVE_ONE_PRODUCT_FROM_ORDER,
   REMOVE_PRODUCT_FROM_ORDER_FAILED,
+  PLACE_ORDER_SUCCESS,
+  PLACE_ORDER_FAILED,
 } from '../actionTypes/orders';
 import type { RootState } from '../store';
 
@@ -68,3 +71,35 @@ export const removeProductFromItem = (
 }).catch((error) => {
   dispatch({ type: REMOVE_PRODUCT_FROM_ORDER_FAILED, payload: error.message });
 });
+
+export const placeOrder = (
+  order: Order,
+  ) => (
+  dispatch: Dispatch<OrdersActionType>,
+  ) => {
+    if (!order.items.length) { // Order is empty
+      dispatch({
+        type: PLACE_ORDER_SUCCESS,
+      });
+      console.log('Failed !, there are no items in the order');
+    } else {
+    customersAPIs.getCustomer(order['customer-id']).then((customer) => { // Fetch Customer
+      const { revenue } = customer;
+       if (Number(order.total) > Number(revenue)) {
+       dispatch({
+         type: PLACE_ORDER_FAILED,
+       });
+       console.log('Failed !, the customre revenue less than the total price of order');
+     } else {
+       dispatch({
+         type: PLACE_ORDER_SUCCESS,
+       });
+       console.log(`Success for Order ${order.id} for customer ${order['customer-id']} with total ${order.total}`);
+     }
+    }).catch(() => { // Failed fetch customer
+      dispatch({
+        type: PLACE_ORDER_FAILED,
+      });
+    });
+  }
+  };

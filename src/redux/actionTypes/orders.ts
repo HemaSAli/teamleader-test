@@ -15,6 +15,9 @@ export const REMOVE_ONE_PRODUCT_FROM_ORDER = 'REMOVE_ONE_PRODUCT_FROM_ORDER';
 export const REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER = 'REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER';
 export const REMOVE_PRODUCT_FROM_ORDER_FAILED = 'REMOVE_PRODUCT_FROM_ORDER_FAILED';
 
+export const PLACE_ORDER_SUCCESS = 'PLACE_ORDER_SUCCESS';
+export const PLACE_ORDER_FAILED = 'PLACE_ORDER_FAILED';
+
 type FetchOrdersStart = {
   type: typeof FETCH_ORDERS_START;
 };
@@ -74,6 +77,14 @@ type RemoveProductFromOrderFailed = {
   payload: string;
 };
 
+type PlaceOrderSucess = {
+  type: typeof PLACE_ORDER_SUCCESS;
+};
+
+type PlaceOrderFailed = {
+  type: typeof PLACE_ORDER_FAILED;
+};
+
 export type OrdersActionType =
   | FetchOrdersStart
   | FetchOrdersSuccess
@@ -85,4 +96,6 @@ export type OrdersActionType =
   | AddProductToOrderFailed
   | RemoveOneProductFromOrder
   | RemoveProductFromOrderFailed
-  | RemoveAllProductsQuantityFromOrder;
+  | RemoveAllProductsQuantityFromOrder
+  | PlaceOrderSucess
+  | PlaceOrderFailed;
