@@ -76,16 +76,14 @@ export const placeOrder = (
   order: Order,
   ) => (
   dispatch: Dispatch<OrdersActionType>,
-  ) => {
-    if (!order.items.length) { // Order is empty
-      dispatch({
-        type: PLACE_ORDER_SUCCESS,
-      });
-      console.log('Failed !, there are no items in the order');
-    } else {
-    customersAPIs.getCustomer(order['customer-id']).then((customer) => { // Fetch Customer
+  ) => customersAPIs.getCustomer(order['customer-id']).then((customer) => { // Fetch Customer
       const { revenue } = customer;
-       if (Number(order.total) > Number(revenue)) {
+      if (!order.items.length) { // Order is empty
+        dispatch({
+          type: PLACE_ORDER_SUCCESS,
+        });
+        console.log('Failed !, there are no items in the order');
+      } else if (Number(order.total) > Number(revenue)) {
        dispatch({
          type: PLACE_ORDER_FAILED,
        });
@@ -101,5 +99,3 @@ export const placeOrder = (
         type: PLACE_ORDER_FAILED,
       });
     });
-  }
-  };
