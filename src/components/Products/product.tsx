@@ -12,15 +12,15 @@ export type SingleProductProps = {
 function SingleProduct({ product }: SingleProductProps) {
   const dispatch = useAppDispatch();
 
-  const { 'product-id': productID, 'unit-price': unitPrice } = product;
+  const {
+    'product-id': productID, 'unit-price': unitPrice, category, description,
+  } = product;
   return (
     <div className="single-product">
-      <p>
-        Product ID: <span className="product-details">{productID}</span>
-      </p>
-      <p>
-        Unit Price: <span className="product-details">{unitPrice}</span>
-      </p>
+      <p>Product ID: <span className="product-details">{productID}</span></p>
+      <p>category: <span className="product-details">{category}</span></p>
+      <p>description: <span className="product-details">{description}</span></p>
+      <p>Price: <span className="product-details">{unitPrice}</span></p>
       <button
         onClick={() => { dispatch(addProductToOrder(product['product-id'])); }}
       >

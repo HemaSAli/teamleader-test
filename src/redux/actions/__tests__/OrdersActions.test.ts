@@ -73,7 +73,12 @@ describe('Orders Action Cases', () => {
     const actions: OrdersActionType[] = store.getActions();
     expect(actions[0]).toEqual({
       type: 'ADD_NEW_PRODUCT_TO_ORDER',
-      payload: { 'product-id': 'B101', 'unit-price': '5.99' },
+      payload: {
+        'product-id': 'B101',
+        'unit-price': '5.99',
+        category: '2',
+        description: 'Basic on-off switch',
+      },
     });
   });
 
@@ -106,7 +111,12 @@ describe('Orders Action Cases', () => {
     const actions: OrdersActionType[] = store.getActions();
     expect(actions[0]).toEqual({
       type: 'ADD_CURRENT_PRODUCT_TO_ORDER',
-      payload: { 'product-id': 'B102', 'unit-price': '4.99' },
+      payload: {
+        'product-id': 'B102',
+        'unit-price': '4.99',
+        category: '2',
+        description: 'Press button',
+      },
     });
   });
 
