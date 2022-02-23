@@ -78,6 +78,8 @@ describe('Orders Reducer Cases', () => {
         payload: {
           'product-id': 'B102',
           'unit-price': '4.99',
+          description: 'Press button',
+          category: '2',
         },
       }),
     ).toEqual({
@@ -110,6 +112,8 @@ describe('Orders Reducer Cases', () => {
         payload: {
           'product-id': 'B101',
           'unit-price': '5.99',
+          description: 'Basic on-off switch',
+          category: '2',
         },
       }),
     ).toEqual({
