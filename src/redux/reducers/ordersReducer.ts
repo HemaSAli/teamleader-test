@@ -83,7 +83,7 @@ export const OrdersReducer: Reducer<OrdersState, Action | OrdersActionType> = (
       };
     }
     case ADD_NEW_PRODUCT_TO_ORDER: {
-      const { payload: { 'unit-price': unitPrice } } = action;
+      const { payload: { 'unit-price': unitPrice, 'product-id': productID } } = action;
       return {
         ...state,
         singleOrder: {
@@ -91,7 +91,9 @@ export const OrdersReducer: Reducer<OrdersState, Action | OrdersActionType> = (
           order: {
             ...state.singleOrder.order,
             total: handleAdd(unitPrice, state.singleOrder.order.total),
-            items: [...state.singleOrder.order.items, { ...action.payload, total: unitPrice.toString(), quantity: '1' }],
+            items: [...state.singleOrder.order.items, {
+              'unit-price': unitPrice, 'product-id': productID, total: unitPrice.toString(), quantity: '1',
+            }],
           },
         },
       };
