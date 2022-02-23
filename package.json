@@ -31,7 +31,8 @@
     "start": "craco start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose --silent --watchAll=false",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext=ts --ext=tsx ."
   },
   "jest": {
     "moduleNameMapper": {
