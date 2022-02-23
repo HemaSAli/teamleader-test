@@ -13,7 +13,7 @@ import {
   REMOVE_ALL_PRODUCT_QUANTITY_FROM_ORDER,
 } from '@/redux/actionTypes/orders';
 import { Order, OrdersState } from '@/types/ordersTypes';
-import { handleAdd, handleSub } from '@/functions/handleTotal';
+import { handleAdd, handleSub } from '@/utils/handleTotal';
 
 const initialOrder: Order = {
   id: '',
