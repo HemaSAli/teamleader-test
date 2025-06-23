@@ -1,0 +1,1 @@
+const initialOrder = { id: 'xx-xx', 'customer-id': '', total: '', items: [] };
