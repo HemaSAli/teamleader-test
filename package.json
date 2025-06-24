@@ -15,8 +15,8 @@
     "@types/react-modal": "^3.13.1",
     "@types/react-redux": "^7.1.22",
     "@types/redux-mock-store": "^1.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
     "react-modal": "^3.14.4",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
@@ -36,7 +36,7 @@
     "lint": "eslint --ext=ts --ext=tsx ."
    },
   "jest": {
-    "moduleNameMapper": {
+    "moduleNameMapping": {
       "^@/(.*)$": "<rootDir>/src/$1"
     }
   },
